@@ -1,7 +1,7 @@
 <template>
     <div class="home-page">
     <section class="featured-posts">
-      <PostList />
+      <PostList :posts="loadedPosts" />
     </section>
     </div>
 </template>
@@ -10,9 +10,14 @@
 import PostList from '~/components/Posts/PostList'
 
 export default {
-    components:  {
-      PostList
-    }    
+  components:  {
+    PostList
+  },
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts
+    }
+  }
 }
 </script>
 

@@ -2,23 +2,14 @@
    <div class="home-page">
     <section class="featured-posts">
       <PostPreview
-          id="1"
-          thumbnail="https://www.dreamhost.com/blog/wp-content/uploads/2016/08/DreamHost-Top-Tech-Trends.jpg"
-          :is-admin="isAdmin"
-          title="Helle there!"
-          previewText="This is my first post" />  
-        <PostPreview
-          id="2"
-          thumbnail="https://www.dreamhost.com/blog/wp-content/uploads/2016/08/DreamHost-Top-Tech-Trends.jpg"
-          :is-admin="isAdmin"
-          title="Hi"
-          previewText="This is my second post" />    
-        <PostPreview
-          id="3"
-          thumbnail="https://www.dreamhost.com/blog/wp-content/uploads/2016/08/DreamHost-Top-Tech-Trends.jpg"
-          :is-admin="isAdmin"
-          title="Helle there!"
-          previewText="This is my third post" />  
+        v-for="post in posts"
+        :key="post.id"
+        :id="post.id"
+        :is-admin="isAdmin"
+        :thumbnail="post.thumbnail"
+        :title="post.title"
+        :previewText="post.previewText"
+       />
     </section>
     </div>
 </template>
@@ -27,15 +18,19 @@
 import PostPreview from '~/components/Posts/PostPreview'
 
 export default {
-    components:  {
-      PostPreview
+  components:  {
+    PostPreview
+  },
+  props: {
+    isAdmin: {
+      type: Boolean,
+      default: false
     },
-    props: {
-      isAdmin: {
-        type: Boolean,
-        default: false
-      }
-    }    
+    posts: {
+      type: Array,
+      required: true
+    }
+  }    
 }
 </script>
 

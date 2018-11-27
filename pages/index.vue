@@ -1,21 +1,26 @@
 <template>
-    <div class="home-page">
-        <section class="intro">
-            <h1> Get the latest tech news</h1>    
-        </section>
-        <section class="featured-posts">
-            <PostList />
-        </section>
-    </div>
+  <div class="home-page">
+    <section class="intro">
+      <h1> Get the latest tech news</h1>    
+    </section>
+    <section class="featured-posts">
+      <PostList :posts="loadedPosts" />
+    </section>
+  </div>
 </template>
 
 <script>
 import PostList from '~/components/Posts/PostList'
 
 export default {
-    components:  {
-        PostList
-    }    
+  components:  {
+      PostList
+  },
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts
+    }
+  }  
 }
 </script>
 

@@ -6,7 +6,7 @@
 
     <section class="existing-posts">
       <h1> Existing Posts </h1>
-      <PostList isAdmin />
+      <PostList isAdmin :posts="loadedPosts" />
     </section>
   </div>
 </template>
@@ -18,6 +18,18 @@ import AppButton from '~/components/UI/AppButton'
 
 export default {
   layout: 'admin',
+  asyncData(context, callback) {
+
+    setTimeout(() => {
+      callback(null, { 
+        loadedPosts: [
+        { id: '1', title: 'First Post', previewText: 'Amazing post', thumbnail: 'https://www.dreamhost.com/blog/wp-content/uploads/2016/08/DreamHost-Top-Tech-Trends.jpg' },
+        { id: '2', title: 'Second Post', previewText: 'Amazing post', thumbnail: 'https://www.dreamhost.com/blog/wp-content/uploads/2016/08/DreamHost-Top-Tech-Trends.jpg' },
+        { id: '3', title: 'Third Post', previewText: 'Amazing post', thumbnail: 'https://www.dreamhost.com/blog/wp-content/uploads/2016/08/DreamHost-Top-Tech-Trends.jpg' }
+      ] })
+
+    }, 1500);
+  },
   components: {
     PostList,
     AppButton
