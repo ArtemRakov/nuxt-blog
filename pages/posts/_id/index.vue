@@ -17,22 +17,16 @@
 
 
 <script>
+import axios from 'axios'
 export default {
   asyncData(context) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({
-          loadedPost: { id: '1', title: "First Post (ID: " + context.route.params.id + ")", author: 'Artem', updatedDate: new Date(), contect: 'Dummy text', previewText: 'Amazing post', thumbnail: 'https://www.dreamhost.com/blog/wp-content/uploads/2016/08/DreamHost-Top-Tech-Trends.jpg' }
-        })
-      }, 1000);
-    })
-    .then(data => {
-      return data
-    })
-    .catch(e => {
-      context.error(new Error())
-    })
-   
+    return axios.get('https://nuxt-blog-7be92.firebaseio.com/posts/' + context.params.id + '.json')
+      .then(res => {
+        return {
+          loadedPost: res.data
+        }
+      })
+      .catch(e => context.error(e))
   }
 }
 </script>
