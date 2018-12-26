@@ -68,5 +68,8 @@ module.exports = {
   transition: {
     name: 'fade',
     mode: 'out-in'
-  }
+  },
+  // serverMiddleware: [
+  //   '~/api'
+  // ]
 }
